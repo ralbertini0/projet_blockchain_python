@@ -11,7 +11,7 @@ class PKDF2_HMAC512
         std::string get_hash() {
             std::string hash = seed;
             for (int i=0; i<2048;i++){
-                hash = fake_hmac_sha512(password,hash);
+                hash = hmac_sha512(password,hash);
             }
             return hash; };
 
