@@ -1,13 +1,14 @@
 CPPFLAGS += -I /usr/include/python3.8
-LIBS= ../lib/* -lpython3.8 
-COMPOSANT = PKDF2_HMAC512
+LIBS=-lpython3.8
+
+COMPOSANT = Fake_HMAC_SHA512
 
 CPPFLAGS += -I../membre
 
 LIBSO = ${COMPOSANT}.so
 LIBSO_OBJS = ${COMPOSANT}.o
 
-DESTINATION_LIBSO=../tests/${LIBSO}
+DESTINATION_LIBSO=../lib/${LIBSO}
 
 all: ${DESTINATION_LIBSO}
 

@@ -1,19 +1,21 @@
-from sys import setdlopenflags
-from ctypes import RTLD_GLOBAL
-setdlopenflags (RTLD_GLOBAL | 2)
-
-from members_component import Leg
 from PKDF2_HMAC512 import PKDF2_HMAC512
+import bip39 as bp
+
+
+
+# gen = bp.Bip39("en")
+# seed = gen.generate(12)
+seed = "random"
 
 def test_hash_stable():
-    test_PKDF2_HMAC512 = PKDF2_HMAC512("projet_password","random",5)
+    test_PKDF2_HMAC512 = PKDF2_HMAC512("projet_password",seed)
     hash1 = test_PKDF2_HMAC512.get_hash()
     hash2 = test_PKDF2_HMAC512.get_hash()
     assert hash1 == hash2
 
 def test_hash_unicity():
-    test1_PKDF2_HMAC512 = PKDF2_HMAC512("projet_password1","random",5)
-    test2_PKDF2_HMAC512 = PKDF2_HMAC512("projet_password2","random",5)
+    test1_PKDF2_HMAC512 = PKDF2_HMAC512("projet_password1",seed)
+    test2_PKDF2_HMAC512 = PKDF2_HMAC512("projet_password2",seed)
     hash1 = test1_PKDF2_HMAC512.get_hash()
     hash2 = test2_PKDF2_HMAC512.get_hash()
     assert hash1 != hash2
